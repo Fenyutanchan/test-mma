@@ -8,6 +8,6 @@ FI = TI[
         {k[1]+k[2], m3, 2}
     }
 ];
-rslt = AlphaToFeynman @ AlphaReduce @ AlphaParametrize[tmp1, Method->1];
+rslt = AlphaToFeynman @ AlphaReduce @ AlphaParametrize[FI, Method->1];
 
 Export["rslt.txt", FortranForm[rslt]];
