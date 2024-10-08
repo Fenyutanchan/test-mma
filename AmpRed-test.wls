@@ -1,4 +1,4 @@
-Import["https://gitlab.com/chenwenphy/ampred/-/raw/main/AmpRed/AmpRed.m"];
+Import @ FileNameJoin[{"ampred", "AmpRed", "AmpRed.m"}];
 
 FI = TI[
     {k[1], k[2]},
