@@ -38,12 +38,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     steps:
-      - name: Download Artifact
+      - name: Download Script Artifact
         uses: actions/download-artifact@v4
         with:
-          name: |
-            Script.tar.gz
-            ampred.tar.gz
+          name: Script.tar.gz
+      
+      - name: Download AmpRed
+        uses: actions/download-artifact@v4
+        with:
+          name: ampred.tar.gz
 
       - name: Extract Artifact
         run: |
