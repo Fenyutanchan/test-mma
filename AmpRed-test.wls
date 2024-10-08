@@ -1,0 +1,14 @@
+Import["https://gitlab.com/chenwenphy/ampred/-/raw/main/AmpRed/AmpRed.m"];
+
+FI = TI[
+    {k[1], k[2]},
+    {
+        {k[1], m1, 3},
+        {k[2], m2, 4},
+        {k[1]+k[2], m3, 2}
+    }
+];
+rslt = AlphaToFeynman @ AlphaReduce @ AlphaParametrize[tmp1, Method->1];
+
+SetDirectory @ NotebookDirectory[];
+Export["rslt.txt", FortranForm[rslt]];

@@ -13,8 +13,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: HelloWorld.wls
-          path: HelloWorld.wls
+          name: AmpRed-test.wls
+          path: AmpRed-test.wls
       
 
   fytcmma:
@@ -29,17 +29,17 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: HelloWorld.wls
-          path: HelloWorld.wls
+          name: AmpRed-test.wls
+          path: AmpRed-test.wls
 
       - name: Magic
         run: /bin/bash /root/magic.sh > /dev/null
       
       - name: Run Script
-        run: wolframscript -file HelloWorld.wls > HelloWorld.log
+        run: wolframscript -file AmpRed-test.wls
 
       - name: Upload Log
         uses: actions/upload-artifact@v4
         with:
-          name: HelloWorld.log
-          path: HelloWorld.log
+          name: rslt.txt
+          path: rslt.txt
