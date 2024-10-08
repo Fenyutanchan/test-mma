@@ -10,14 +10,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Make Artifact
+      - name: Download AmpRed
+        run: wget https://gitlab.com/chenwenphy/ampred/-/archive/main/ampred-main.tar.gz
+
+      - name: Make Script Artifact
         run: tar -czvf Script.tar.gz *.wls
 
-      - name: Upload Artifact
+      - name: Upload Script Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Script.tar.gz
           path: Script.tar.gz
+
+      - name: Upload AmpRed
+        uses: actions/upload-artifact@v4
+        with:
+          name: ampred.tar.gz
+          path: ampred-main.tar.gz
       
 
   fytcmma:
@@ -29,18 +38,17 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          repository: https://gitlab.com/chenwenphy/ampred.git
-
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: Script.tar.gz
+          name: |
+            Script.tar.gz
+            ampred.tar.gz
 
       - name: Extract Artifact
-        run: tar -zxvf Script.tar.gz
+        run: |
+          tar -zxvf Script.tar.gz
+          tar -zxvf ampred.tar.gz
 
       - name: Magic
         run: /bin/bash /root/magic.sh > /dev/null
