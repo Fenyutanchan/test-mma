@@ -10,11 +10,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Make Artifact
+        run: tar -czvf Script.tar.gz *.wls
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: AmpRed-test.wls
-          path: AmpRed-test.wls
+          name: Script
+          path: Script.tar.gz
       
 
   fytcmma:
@@ -29,16 +32,28 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: AmpRed-test.wls
-          path: AmpRed-test.wls
+          name: Script
+          path: Script.tar.gz
+
+      - name: Extract Artifact
+        run: tar -zxvf Script.tar.gz
 
       - name: Magic
         run: /bin/bash /root/magic.sh > /dev/null
       
-      - name: Run Script
+      - name: Run HelloWorld
+        run: wolframscript -file HelloWorld.wls
+
+      - name: Run AmpRed-test
         run: wolframscript -file AmpRed-test.wls
 
-      - name: Upload Log
+      - name: Upload HelloWorld Log
+        uses: actions/upload-artifact@v4
+        with:
+          name: HW.log
+          path: HW.log
+
+      - name: Upload AmpRed-test Result
         uses: actions/upload-artifact@v4
         with:
           name: rslt.txt

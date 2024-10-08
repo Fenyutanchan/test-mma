@@ -1,4 +1,4 @@
 #!/usr/bin/env wolframscript
 (* ::Package:: *)
 
-Print["Hello World!"]
+Export["HW.log", "Hello World!"]
