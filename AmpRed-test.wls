@@ -10,4 +10,4 @@ FI = TI[
 ];
 rslt = AlphaToFeynman @ AlphaReduce @ AlphaParametrize[FI, Method->1];
 
-Export["rslt.txt", FortranForm[rslt]];
+Export["rslt.txt", rslt];
