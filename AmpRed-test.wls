@@ -1,4 +1,4 @@
-Import @ FileNameJoin[{"ampred-main", "AmpRed", "AmpRed.m"}];
+Import @ FileNameJoin[{"ampred-fix-ToString", "AmpRed", "AmpRed.m"}];
 
 FI = TI[
     {k[1], k[2]},
